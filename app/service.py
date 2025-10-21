@@ -60,9 +60,12 @@ def read_string(string: str):
 
 def search_strings(params: dict):
     filtered = []
+    if not isinstance(params['is_palindrome'], (bool, type(None))) or not isinstance(params['min_length'], (int, type(None))) or not isinstance(params['max_length'], (int, type(None))) or not isinstance(params['word_count'], (int, type(None))) or not isinstance(params['contains_character'], (str, type(None))):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid query parameter values or types")
 
     min_length = 0 if params.get('min_length', None) is None else params.get('min_length')
     max_length = float('inf') if params.get('max_length', None) is None else params.get('max_length')
+
 
     for string_id, string in all_strings.items():
         if (params.get('is_palindrome', None) is not None) and not params.get('is_palindrome', None) == string.properties.is_palindrome:

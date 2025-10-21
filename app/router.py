@@ -35,7 +35,7 @@ def get_string(string_value: str):
     return response
 
 @router.get('/strings')
-def filter_strings(is_palindrome: bool= None, min_length: int = None, max_length: int = None, word_count: int = None, contains_character: str = None):
+def filter_strings(is_palindrome: bool = None, min_length = None, max_length = None, word_count = None, contains_character = None):
     query = {
         'is_palindrome': is_palindrome,
         'min_length': min_length,
@@ -43,6 +43,7 @@ def filter_strings(is_palindrome: bool= None, min_length: int = None, max_length
         'word_count': word_count,
         'contains_character': contains_character
     }
+    print('here')
     response = search_strings(query)
 
     return response
