@@ -5,12 +5,11 @@ from app.schemas import StringAnalysed, StringRaw
 
 router = APIRouter()
 
-@router.post('/strings')
+@router.post('/strings', status_code=status.HTTP_201_CREATED)
 def create_string(payload: dict):
 
     try:
         string = payload["value"]
-        print(string)
     except Exception:
         raise HTTPException(status.HTTP_400_BAD_REQUEST, detail="Invalid request body or missing 'value' field")
 

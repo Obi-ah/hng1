@@ -7,6 +7,7 @@ from app.storage import all_strings
 
 
 def is_palindrome(string):
+    string = string.lower()
     return string == string[::-1]
 
 def freq_counter(string):
