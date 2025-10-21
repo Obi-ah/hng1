@@ -60,7 +60,7 @@ def read_string(string: str):
 
 def search_strings(params: dict):
     filtered = []
-    if not isinstance(params['is_palindrome'], (bool, type(None))) or not isinstance(params['min_length'], (int, type(None))) or not isinstance(params['max_length'], (int, type(None))) or not isinstance(params['word_count'], (int, type(None))) or not isinstance(params['contains_character'], (str, type(None))):
+    if not isinstance(params.get('is_palindrome', None), (bool, type(None))) or not isinstance(params.get('min_length', None), (int, type(None))) or not isinstance(params.get('max_length', None), (int, type(None))) or not isinstance(params.get('word_count', None), (int, type(None))) or not isinstance(params.get('contains_character', None), (str, type(None))):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid query parameter values or types")
 
     min_length = 0 if params.get('min_length', None) is None else params.get('min_length')
@@ -69,13 +69,10 @@ def search_strings(params: dict):
 
     for string_id, string in all_strings.items():
         if (params.get('is_palindrome', None) is not None) and not params.get('is_palindrome', None) == string.properties.is_palindrome:
-            print('palin')
             continue
         if ((params.get('min_length', None) is not None) or (params.get('max_length', None) is not None)) and not (min_length <= string.properties.length <= max_length):
-            print('length')
             continue
         if (params.get('word_count', None) is not None) and not params.get('word_count', None) == string.properties.word_count:
-            print('word_count')
             continue
         if (params.get('contains_character', None) is not None) and not params.get('contains_character', None) in string.properties.character_frequency_map:
             continue
