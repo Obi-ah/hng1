@@ -7,8 +7,8 @@ Built with FastAPI.
 ## Setup
 
 ```bash
-git clone https://github.com/Obi-ah/hng0.git
-cd hng0
+git clone https://github.com/Obi-ah/hng1.git
+cd hng1
 python -m venv venv
 source venv/bin/activate    
 pip install requirements.txt
